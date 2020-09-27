@@ -8,7 +8,7 @@ class ModelTests(TestCase):
         test_email = 'praneet@firstapp.com'
         test_password = 'password123'
         user = get_user_model().objects.create_user(
-            email=test_email,
+            email_add=test_email,
             password=test_password
         )
 
@@ -23,7 +23,7 @@ class ModelTests(TestCase):
         test_email = 'praneet@FIRSTAPP.com'
         test_password = 'password123'
         user = get_user_model().objects.create_user(
-            email=test_email,
+            email_add=test_email,
             password=test_password
         )
 
@@ -39,7 +39,7 @@ class ModelTests(TestCase):
         test_email = 'praneet@firstapp.com'
         test_password = 'password123'
         user = get_user_model().objects.create_superuser(
-            email=test_email,
+            email_add=test_email,
             password=test_password
         )
 

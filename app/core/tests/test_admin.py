@@ -8,13 +8,13 @@ class AdminSiteTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.admin_user = get_user_model().objects.create_superuser(
-            email='admin@firstapp.com',
+            email_add='admin@firstapp.com',
             password='admin123'
         )
 
         self.client.force_login(self.admin_user)
         self.user = get_user_model().objects.create_user(
-            email='nonadmin@firstapp.com',
+            email_add='nonadmin@firstapp.com',
             password='nonadmin123',
             name='Non Admin'
         )

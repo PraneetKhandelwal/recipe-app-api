@@ -5,13 +5,13 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email_add, password=None, **extra_fields):
         """Creates a new user using email and password passed as arguements"""
-        if not email:
+        if not email_add:
             raise ValueError('Please provide a valid email id \
                               for user creation')
         user = self.model(
-            email_add=self.normalize_email(email),
+            email_add=self.normalize_email(email_add),
             **extra_fields
             )
         user.set_password(password)
@@ -20,13 +20,13 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email, password=None):
+    def create_superuser(self, email_add, password=None):
         """
         Creates a new super user using email and password
         passed as arguements
         """
         superuser = self.create_user(
-            email,
+            email_add,
             password,
             is_staff=True,
             is_superuser=True
