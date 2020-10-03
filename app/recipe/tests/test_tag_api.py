@@ -79,3 +79,26 @@ class Private_Tag_API_Test(TestCase):
         self.assertEqual(len(res.data), 2)
         self.assertEqual(res.data[0]['name'], tag1.name)
         self.assertEqual(res.data[1]['name'], tag2.name)
+
+    def test_create_tag_success(self):
+        """Test if the tag is created successfully by the API"""
+        payload = {
+            "name": "Vegan"
+        }
+        res = self.client.post(TAG_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        exists = Tag.objects.filter(
+            user=self.user,
+            name=payload['name']
+        ).exists()
+        self.assertTrue(exists)
+
+    def test_create_invalid_tag_fail(self):
+        """Test the tagname is validated before creation"""
+        payload = {
+            "name": ""
+        }
+        res = self.client.post(TAG_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
